@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" rel="stylesheet" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+
+
+  <h1>Bienvenido a Categoria</h1>
+  <hr>
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i></button>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">CATEGORIA</th>
+      <th scope="col">ACCION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cat : ${cats}">
+      <td th:text="${cat.id}">Mark</td>
+      <td th:text="${cat.nombre}">Otto</td>
+      <td colspan="2">
+        <a class="btn btn-warning" href="#" role="button"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="btn btn-danger" href="#" role="button"><i class="fa-solid fa-trash-can"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!--Modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/categorias/save}" th:object="${categoria}" method="post">
+          <input type="hidden" th:field="*{id}">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Categoria:</label>
+            <input type="text" th:field="*{nombre}" class="form-control" id="recipient-name">
+          </div>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
